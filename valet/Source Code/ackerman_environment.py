@@ -19,25 +19,11 @@ class Environment():
         self.grd[100,100] = 5
         self.grd[629, 289] = 6 # location parallel to the next car in the parking lot
 
-        # self.wheel_positions = np.array([[25,15],[25,-15],[-25,15],[-25,-15]])       
-
-        # self.car_struct = np.array([[+65, +self.car_width/2],
-        #                             [+65, -self.car_width/2],  
-        #                             [-15, -self.car_width/2],
-        #                             [-15, +self.car_width/2]], 
-        #                             np.int32)
-
         self.car_struct = np.array([[+self.car_length/2, +self.car_width/2],
                                     [+self.car_length/2, -self.car_width/2],  
                                     [-self.car_length/2, -self.car_width/2],
                                     [-self.car_length/2, +self.car_width/2]], 
                                     np.int32)
-        
-        # self.wheel_struct = np.array([[+self.wheel_length/2, +self.wheel_width/2],
-        #                               [+self.wheel_length/2, -self.wheel_width/2],  
-        #                               [-self.wheel_length/2, -self.wheel_width/2],
-        #                               [-self.wheel_length/2, +self.wheel_width/2]], 
-        #                               np.int32)
 
     def obs_gen(self):
 
@@ -75,7 +61,6 @@ class Environment():
                     self.grd[709+l][280] = 1
                     self.grd[709+l][360] = 1
 
-        
         return self.grd
     
     def rotate_car(self, pts, angle):
@@ -83,8 +68,7 @@ class Environment():
                     [np.sin(angle),  np.cos(angle)]])
         return ((R @ pts.T).T).astype(int)
 
-    def render(self, grd1, x, y, psi):
-        
+    def render(self, grd1, x, y, psi):   
         x = int(x)
         y = int(y)
         
@@ -92,45 +76,11 @@ class Environment():
         rotated_struct = self.rotate_car(self.car_struct, angle=psi)
         rotated_struct += np.array([x,y]) # 4 points of car --> draw line between them
 
-        temp_env = grd1.copy()
-
-        #drawing car using matplotlib
-        
-        # x1, y1 = rotated_struct[0]
-        # x2, y2 = rotated_struct[1]
-        # x3, y3 = rotated_struct[2]
-        # x4, y4 = rotated_struct[3]
-   
-        # slops = [(y2-y1)/(x2-x1), (y2-y3)/(x2-x3), (y3-y4)/(x3-x4), (y4-y1)/(x4-x1)]
-        
+        temp_env = grd1.copy()   
         for x,y in rotated_struct:
             
             temp_env[x][y] = 8
-            
-
-        # temp_env = self.draw_line(temp_env, x1, y1, x2, y2)
-        # temp_env = self.draw_line(temp_env, x2, y2, x3, y3)
-        # temp_env = self.draw_line(temp_env, x3, y3, x4, y4)
-        # temp_env = self.draw_line(temp_env, x4, y4, x1, y1)
         
-        # plt.imshow(temp_env)
-        # plt.colorbar()
-        # plt.show()
-
-
-        # # adding wheel
-        # rotated_wheel_center = self.rotate_car(self.wheel_positions, angle=psi)
-
-        # for i,wheel in enumerate(rotated_wheel_center):
-            
-        #     if i <2:
-        #         rotated_wheel = self.rotate_car(self.wheel_struct, angle=delta+psi)
-        #     else:
-        #         rotated_wheel = self.rotate_car(self.wheel_struct, angle=psi)
-
-        #     rotated_wheel += np.array([x,y]) + wheel 
-
-             
         return temp_env, rotated_struct
         
     
@@ -149,9 +99,7 @@ class Environment():
                  math.radians(45)]
         
         u_s = [-1,-0.5,-0.1,0.1,0.5,1] # change accordingly
-        # U_s = 1
-        
-
+    
         end_new = [] # tracks the end position of the path before parking 
 
         prev = []                                                       # keeps the track of previous nodes
