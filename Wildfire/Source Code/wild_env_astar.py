@@ -54,29 +54,7 @@ class Environment:
         
         for x,y in rotated_struct:  
             temp_env[x][y] = 8
-            
-        # temp_env = self.draw_line(temp_env, x1, y1, x2, y2)
-        # temp_env = self.draw_line(temp_env, x2, y2, x3, y3)
-        # temp_env = self.draw_line(temp_env, x3, y3, x4, y4)
-        # temp_env = self.draw_line(temp_env, x4, y4, x1, y1)
-        
-        # plt.imshow(temp_env)
-        # plt.colorbar()
-        # plt.show()
-
-        # # adding wheel
-        # rotated_wheel_center = self.rotate_car(self.wheel_positions, angle=psi)
-
-        # for i,wheel in enumerate(rotated_wheel_center):
-            
-        #     if i <2:
-        #         rotated_wheel = self.rotate_car(self.wheel_struct, angle=delta+psi)
-        #     else:
-        #         rotated_wheel = self.rotate_car(self.wheel_struct, angle=psi)
-
-        #     rotated_wheel += np.array([x,y]) + wheel + 
-
-             
+                 
         return temp_env, rotated_struct
 #-------------------------------------------------------------------------------------------------------------------
     
@@ -192,8 +170,6 @@ class Environment:
                 bush_list_with_state[rand_num][1] = 'bur'
                 bush_at_fire = bush_list_with_state[rand_num]
                 break
-        
-        
 
         for k in range(xbush-9, xbush+9):
             for l in range(ybush-9, ybush+9):
@@ -226,9 +202,6 @@ class Environment:
         
         bush_list_with_state = temp_bush_list_with_state # reassigning the values 
                         
-                
-        
-
         # updating the environment for burning childs 
 
         for cntr in range(0, len(bush_list_with_state)):
@@ -240,8 +213,6 @@ class Environment:
                             if (updated_env[k][l]==0.5):
                                 updated_env[k][l] = 3
                 
-
-
         return bush_list_with_state, updated_env, child_bushes_at_fire
 
     def end_state_update(self, bush_at_fire, updated_env, bush_list_with_state):
@@ -379,7 +350,6 @@ class astar_planner:
                 prev.append([x,y])
                 
                 end_new = [x,y]
-
                 dist_rad = math.sqrt ( (x_goal-x)**2 + (y_goal-y)**2 )
 
                 if (dist_rad<=11):                  #Remeber, 6 is the value of the end position in our 2D grid
@@ -437,4 +407,3 @@ class astar_planner:
             new_path.reverse() # The path in the final_path will be from end to start to we will reverse it.
             angle_list.reverse()
             return new_path, angle_list
-#-----------------------------------------------------------------------
