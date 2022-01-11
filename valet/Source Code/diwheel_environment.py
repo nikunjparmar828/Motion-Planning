@@ -26,12 +26,6 @@ class Environment():
                                     [-self.car_length/2, -self.car_width/2],
                                     [-self.car_length/2, +self.car_width/2]], 
                                     np.int32)
-        
-        # self.wheel_struct = np.array([[+self.wheel_length/2, +self.wheel_width/2],
-        #                               [+self.wheel_length/2, -self.wheel_width/2],  
-        #                               [-self.wheel_length/2, -self.wheel_width/2],
-        #                               [-self.wheel_length/2, +self.wheel_width/2]], 
-        #                               np.int32)
 
     def obs_gen(self):
 
@@ -77,8 +71,7 @@ class Environment():
                     [np.sin(angle),  np.cos(angle)]])
         return ((R @ pts.T).T).astype(int)
 
-    def render(self, grd1, x, y, psi):
-        
+    def render(self, grd1, x, y, psi):  
         x = int(x)
         y = int(y)
         
@@ -92,29 +85,6 @@ class Environment():
         
         for x,y in rotated_struct:  
             temp_env[x][y] = 8
-            
-        # temp_env = self.draw_line(temp_env, x1, y1, x2, y2)
-        # temp_env = self.draw_line(temp_env, x2, y2, x3, y3)
-        # temp_env = self.draw_line(temp_env, x3, y3, x4, y4)
-        # temp_env = self.draw_line(temp_env, x4, y4, x1, y1)
-        
-        # plt.imshow(temp_env)
-        # plt.colorbar()
-        # plt.show()
-
-        # # adding wheel
-        # rotated_wheel_center = self.rotate_car(self.wheel_positions, angle=psi)
-
-        # for i,wheel in enumerate(rotated_wheel_center):
-            
-        #     if i <2:
-        #         rotated_wheel = self.rotate_car(self.wheel_struct, angle=delta+psi)
-        #     else:
-        #         rotated_wheel = self.rotate_car(self.wheel_struct, angle=psi)
-
-        #     rotated_wheel += np.array([x,y]) + wheel + 
-
-             
         return temp_env, rotated_struct
     ##-------------------------------------------------------------------------------------------------------------------
     
