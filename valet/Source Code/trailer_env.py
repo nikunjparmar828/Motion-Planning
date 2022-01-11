@@ -34,12 +34,6 @@ class Environment():
                                     [-self.trailer_length/2, -self.trailer_width/2],
                                     [-self.trailer_length/2, +self.trailer_width/2]], 
                                     np.int32)
-        
-        # self.wheel_struct = np.array([[+self.wheel_length/2, +self.wheel_width/2],
-        #                               [+self.wheel_length/2, -self.wheel_width/2],  
-        #                               [-self.wheel_length/2, -self.wheel_width/2],
-        #                               [-self.wheel_length/2, +self.wheel_width/2]], 
-        #                               np.int32)
 
     def obs_gen(self):
 
@@ -110,8 +104,7 @@ class Environment():
             temp_env[iix][iiy] = 8
                  
         return temp_env, car_and_trailer
-        
-    
+
     def trailer_kine(self, grd2, start_car, start_t, end):
       
         r=4 #wheel radius
@@ -286,4 +279,3 @@ class Environment():
             angle_list_t.reverse()
             
             return new_path_car, new_path_t, angle_list_car, angle_list_t
-
