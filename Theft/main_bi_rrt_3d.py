@@ -19,18 +19,10 @@ class env3d:
 		self.ymax=ymax
 		self.zmin=zmin
 		self.zmax=zmax 
-    
-	# def wall_generation(self, xmin,xmax,ymin,ymax,zmin,zmax):
-		
-
-
-
-
+    		
 #Collision checking for a path
 	def inobstacle(self,x1,y1,z1,x2,y2,z2):
 		c=1 #assume no collision
-
-
 		for j in range(0,51):
 			u=j/50
 			x = x1*u + x2*(1-u)
@@ -54,23 +46,6 @@ class env3d:
 				elif z > 0.214 or z < 0.186:
 					c=0
 					break
-
-
-		# obs_num = len(self.x)/4 #four vertices for each rectangular obstacle
-		# for i in range(1,int(obs_num+1)):
-		# 	xomin=self.x[4*(i-1)]
-		# 	xomax=self.x[4*(i-1)+2]
-		# 	yomin=self.y[4*(i-1)]
-		# 	yomax=self.y[4*(i-1)+1]
-		# 	for j in range(0,101):
-		# 		u=j/100.0
-		# 		x=x1*u+x2*(1-u)
-		# 		y=y1*u+y2*(1-u)
-		# 		if (x>=xomin) and (x<=xomax) and (y>=yomin) and (y<=yomax):
-		# 			c=0
-		# 			break
-
-
 			if c==0: break	
 		return c
 
@@ -83,8 +58,7 @@ class env3d:
 			G.remove_node(n)
 			return 0
 
-		#I have taken margin of 0.061 to play safe
-		
+		#I have taken margin of 0.061 to play safe	
 		# first barrier avoidance 
 		if x >= (1-0.061) and x<= (1+0.061):
 			if y < 0.486 or y > 0.514:
@@ -102,18 +76,6 @@ class env3d:
 			elif z > 0.214 or z < 0.186:
 				G.remove_node(n)
 				return 0
-
-
-		# obs_num = len(self.x)/4 #four vertices for each rectangular obstacle
-		# for i in range(1,int(obs_num+1)):
-		# 	xomin=self.x[4*(i-1)]
-		# 	xomax=self.x[4*(i-1)+2]
-		# 	yomin=self.y[4*(i-1)]
-		# 	yomax=self.y[4*(i-1)+1]
-		# 	if (x>=xomin) and (x<=xomax) and (y>=yomin) and (y<=yomax):
-		# 		G.remove_node(n)
-		# 		return 0
-		# 		break	
 				
 #check if current node is in goal region
 	def ingoal(self):
@@ -201,17 +163,6 @@ class RRT3d:
 			#connect the random node with its nearest node
 			self.connect(nnear,n)
 		
-	# def bias (self):
-	# 	#add random node
-	# 	n= self.number_of_nodes() #new node
-	# 	self.add_node(n,xg,yg,zg) #test goal region
-	# 	#find nearest node
-	# 	nnear = self.near(n)
-	# 	#find new node based on step size
-	# 	self.step(nnear,n)
-	# 	#connect the random node with its nearest node
-	# 	self.connect(nnear,n)
-	
 	#nearest node
 	def near(self,n):
 		#find a near node
@@ -365,10 +316,9 @@ nstart =(0.2,0.5,0.026)
 #specify vertices for rectangular obstacles (each object has four vertices)
 #obstacles known a priori
 #
-#  vx= [18,18,38,38,   60,60,80,80, 40,40,60,60]
+# vx= [18,18,38,38,   60,60,80,80, 40,40,60,60]
 # vy= [48,100,100,48, 40,90,90,40, 0,48,48, 0]
 # vz = [0,100]
-
 
 #create an RRT tree with a start node
 G=RRT3d(nstart)
@@ -384,30 +334,6 @@ ax = fig.gca(projection='3d')
 #--------------------------------------Functions------------------------------------------
 #draw trees and environment
 def draw ():
-	#draw 
-	
-	#goal region
-	# gx=[xgmin,xgmin,xgmax,xgmax,xgmin]
-	# gy=[ygmin,ygmax,ygmax,ygmin,ygmin]
-		
-	#draw tree
-	G.showtree('0.45')
-	S.showtree('c')
-		 
-	#draw path
-	G.showpath('ro-')
-	# G.showtpath('g*-')
-	S.showpath('ro-')
-	# S.showtpath('g*-')
-		 
-	#draw obstacles
-	# num = len(E.x)/4
-	# for i in range(1,int(num+1)):
-	# 	obx=[E.x[4*(i-1)],E.x[4*(i-1)+1],E.x[4*(i-1)+2],E.x[4*(i-1)+3],E.x[4*(i-1)]]
-	# 	oby=[E.y[4*(i-1)],E.y[4*(i-1)+1],E.y[4*(i-1)+2],E.y[4*(i-1)+3],E.y[4*(i-1)]]
-	# 	E.cubedraw(obx,oby,E.zmin,E.zmax,'k')
-	
-
 	plt.show()
 				
 				
