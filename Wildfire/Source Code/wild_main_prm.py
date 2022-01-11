@@ -37,7 +37,6 @@ heap = []
 bushes_man = []
 updated_env = bush_env
 
-
 def rand_fire(bush_list_with_state, updated_env, heap):
     global time_60
     global bushes_man
@@ -62,12 +61,10 @@ def neighbours_on_fire(bush_list_with_state, updated_env, heap):
         time_20 = 0
     return bush_list_with_state, updated_env, heap
 
-
 def end_state_update(bush_at_fire, updated_env, bush_list_with_state):
     bush_list_with_state, updated_env = bush_env_obj.end_state_update(bush_at_fire, updated_env, bush_list_with_state)
 
     return bush_list_with_state, updated_env
-
 
 if(time_60>=60 or time_60==0):
     bush_list_with_state, updated_env, heap = rand_fire(bush_list_with_state, updated_env, heap)
@@ -75,19 +72,11 @@ if(time_60>=60 or time_60==0):
 
 bush_counter = 0
 temp_path = []
-# prm = Node()
 
-while total_time<3600:
-    # global time_60
-    # global time_20
-    # global total_time
-
-    # end = bush_at_fire[0]
-    # Waiting time on a starting spot of the car  
+while total_time<3600: 
     total_time+=2 # waitkey --> 200 means 1 sec so 1000 waitkey means 5 seconds 
     time_60+=2
     time_20+=2
-    # time.sleep(2)
 
     if (time_20>=20):
         bush_list_with_state, updated_env, heap = neighbours_on_fire(bush_list_with_state, updated_env, heap)
@@ -96,7 +85,6 @@ while total_time<3600:
     if(time_60>=60):
         bush_list_with_state, updated_env, heap = rand_fire(bush_list_with_state, updated_env, heap)
         time_60 = 0 # just to be safe
-
 
     try:
         got_data = bushes_man[bush_counter]
@@ -163,19 +151,10 @@ while total_time<3600:
 
             if(time_60>=60):
                 bush_list_with_state, updated_env, heap = rand_fire(bush_list_with_state, updated_env, heap)
-                time_60 = 0 # just to be safe
-
-            # cv2.destroyWindow('environment')
-        
+                time_60 = 0 # just to be safe      
         cv2.waitKey(1000)
         time.sleep(0.1)
         start = temp_path[jj]
         jj = 0
         #extingushing the fire
         bush_list_with_state, updated_env = end_state_update(bush_at_fire, updated_env, bush_list_with_state)
-
-        
-
-        
-    
-        
