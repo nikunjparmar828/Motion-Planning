@@ -238,25 +238,7 @@ class RRT3d:
 			self.remove_node(n2)
 		else:
 			self.add_edge(n1,n2)
-			
-#connect two trees (Boundary Valued Problem)
-	# def BVP_to(self,A):
-	# 	#attempt to connect this node
-	# 	n1=self.number_of_nodes()-1
-	# 	(x1,y1,z1)= (self.x[n1],self.y[n1],self.z[n1])
-	# 	c=0 #assume no connection
-	# 	num=A.number_of_nodes()
-	# 	for i in range (0,num-1):
-	# 		(x2,y2,z2)= (A.x[n2],A.y[n2],A.z[n2])
-	# 		if E.inobstacle(x1,y1,x2,y2)==1:
-	# 			self.add_node(n1+1,x2,y2)
-	# 			self.add_edge(n1,n1+1)
-	# 			self.BVPnode=n1+1
-	# 			A.BVPnode=i
-	# 			c=1
-	# 			break
-	# 	return c					
-
+						
 #add node
 	def add_node(self,n,x,y,z):
 		self.x.insert(n, x)
@@ -438,16 +420,6 @@ zgmax=zg+epsilon
 dmax = 10
 #start the root of the tree
 nstart =(200,500,26) 
-# nstart = (1750,500,61)
-
-# #specify vertices for rectangular obstacles (each object has four vertices)
-# #obstacles known a priori
-# vx= [40,40,60,60,70,70,80,80,40,40,60,60]
-# vy= [52,100,100,52,40,60,60,40, 0,48,48, 0]
-# vz = [0,100]
-# #hidden obstacle
-# hvx= [15,15,25,25,25,25,35,35]
-# hvy= [15,30,30,15,40,60,60,40]
 
 #create an RRT tree with a start node
 G=RRT3d(nstart)
@@ -470,27 +442,9 @@ def draw ():
 	# E.cubedraw(gx,gy,xg-epsilon,xg+epsilon,'g')
 		
 	#draw tree
-	G.showtree('0.45')
-		 
+	G.showtree('0.45')		 
 	#draw path
 	G.showpath('ro-')
-	# G.showtpath('g*-')
-		 
-	#draw obstacles
-	# num = len(E.x)/4
-	# for i in range(1,int(num+1)):
-	# 	obx=[E.x[4*(i-1)],E.x[4*(i-1)+1],E.x[4*(i-1)+2],E.x[4*(i-1)+3],E.x[4*(i-1)]]
-	# 	oby=[E.y[4*(i-1)],E.y[4*(i-1)+1],E.y[4*(i-1)+2],E.y[4*(i-1)+3],E.y[4*(i-1)]]
-	# 	E.cubedraw(obx,oby,E.zmin,E.zmax,'k')
-	
-		
-	#draw  hidden obstacles (if they exist)
-	# obs_num = len(hvx)/4
-	# for i in range(1,int(obs_num+1)):
-	# 	obsx=[hvx[4*(i-1)],hvx[4*(i-1)+1],hvx[4*(i-1)+2],hvx[4*(i-1)+3],hvx[4*(i-1)]]
-	# 	obsy=[hvy[4*(i-1)],hvy[4*(i-1)+1],hvy[4*(i-1)+2],hvy[4*(i-1)+3],hvy[4*(i-1)]]
-	# 	E.cubedraw(obx,oby,E.zmin,E.zmax,'k--')
-
 	plt.show()
 
 
