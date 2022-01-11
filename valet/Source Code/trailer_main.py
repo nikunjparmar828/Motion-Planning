@@ -1,17 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
-
 from trailer_env import Environment
-
 
 car_start = [150,150] # Starting position of the Car
 trailer_start = [100,100] # Starting position of the Trailer
-
 car_end = [629, 289] #end point for car
-
 res = Environment() #returns the environment 
-
 env = res.obs_gen() # generated obstacles 
 
 ##-------------------------------------------------------------------------------------------------------
@@ -35,7 +30,7 @@ imS = cv2.resize(updated_env, (600, 600))
 cv2.imshow('environment', imS)
 key = cv2.waitKey(5000)
 
-##Currently Working in this Problem----------------------------------------------------------------------------------
+##Currently Working on this Problem----------------------------------------------------------------------------------
 ##--------------------------- Trailer Parallel Parking Printing-----------------------------------------------------------------------------
 # psi_resolution = 0.0174533 # 0.9 degree change divided into 50 in positive and 50 in negative direction changes 
 # psi = 1.5708 
@@ -59,7 +54,6 @@ key = cv2.waitKey(5000)
 #     imS = cv2.resize(updated_env, (600, 600))  
 #     cv2.imshow('environment', imS)
 #     key = cv2.waitKey(30)
-
 
 # updated_env, rotated_struct = res.render(env, path[jj+1][0],path[jj+1][1],hard_angles)
 # # print("I am good!")
