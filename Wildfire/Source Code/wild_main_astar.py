@@ -131,12 +131,7 @@ while total_time<3600:
                 bush_list_with_state, updated_env, heap = neighbours_on_fire(bush_list_with_state, updated_env, heap)
                 time_20 = 0 # being safe 
 
-            # if(time_60>=60):
-            #     bush_list_with_state, updated_env, heap = rand_fire(bush_list_with_state, updated_env, heap)
-            #     time_60 = 0 # just to be safe
-
-            # cv2.destroyWindow('environment')
-        
+      
         cv2.waitKey(1000)
         time.sleep(1)
         start = temp_path[jj]
