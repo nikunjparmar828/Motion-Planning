@@ -40,7 +40,6 @@ slop1 = abs((ymid-yop)/(xmid-xop))
 slop2 = abs((yip-ymid)/(xip-xmid))
 
 counter = 1
-# parking_path.append([xop,yop])
 
 x_,y_ = xop,yop
 while True:
