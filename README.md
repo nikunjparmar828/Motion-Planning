@@ -4,4 +4,6 @@ Here I post my cool assignments. Please run a file containing the name 'main' in
 
 Mail at "nparmar@wpi.edu" if you want to use this code.
 
+---Please read pdf files to understand the problem statements--- 
+
  
